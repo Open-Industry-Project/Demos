@@ -1,0 +1,425 @@
+[gd_scene load_steps=24 format=3 uid="uid://jmrpe7sqayiw"]
+
+[ext_resource type="Script" path="res://src/Main/Root.cs" id="1_4g54m"]
+[ext_resource type="PackedScene" uid="uid://dyhvoundu2kqc" path="res://parts/Building.tscn" id="2_tqfba"]
+[ext_resource type="PackedScene" uid="uid://dm55h6ap605bw" path="res://parts/BeltConveyor.tscn" id="6_jflkh"]
+[ext_resource type="PackedScene" uid="uid://dvjrx5crpqs5f" path="res://parts/SideGuard.tscn" id="7_p3dwj"]
+[ext_resource type="PackedScene" uid="uid://cr8u3bta0skiy" path="res://parts/ConveyorLegBC.tscn" id="8_8hj0k"]
+[ext_resource type="PackedScene" uid="uid://6vu4cx2v1ltg" path="res://src/Conveyor/CurvedBeltConveyor.tscn" id="9_l4nkn"]
+[ext_resource type="PackedScene" uid="uid://b2hnylsj67c5m" path="res://parts/ConveorLegCBC.tscn" id="10_8yxa5"]
+[ext_resource type="PackedScene" uid="uid://b567tts2001h8" path="res://parts/SideGuardCBC.tscn" id="11_mu6e4"]
+[ext_resource type="PackedScene" uid="uid://dg47c07xr4ksu" path="res://parts/RollerConveyor.tscn" id="12_3e0gh"]
+[ext_resource type="PackedScene" uid="uid://rv5ef61beh35" path="res://parts/ConveyorLegRC.tscn" id="13_k7nrd"]
+[ext_resource type="PackedScene" uid="uid://c3cdcxifx4eej" path="res://parts/CurvedRollerConveyor.tscn" id="14_d660b"]
+[ext_resource type="PackedScene" uid="uid://somtwmiih8bb" path="res://parts/ConveyorLegCRC.tscn" id="15_qh4jy"]
+[ext_resource type="PackedScene" uid="uid://c4xqkx88xf1dy" path="res://parts/CRCSideGuard.tscn" id="16_sxivh"]
+[ext_resource type="PackedScene" uid="uid://5pjmdoyiub35" path="res://parts/Diverter.tscn" id="17_k3max"]
+[ext_resource type="Script" path="res://src/StackLight/StackSegmentData.cs" id="17_nfexs"]
+[ext_resource type="PackedScene" uid="uid://kdpe7o4ec1fa" path="res://parts/DiffuseSensor.tscn" id="18_q87tj"]
+[ext_resource type="Script" path="res://src/StackLight/StackLightData.cs" id="18_unbyr"]
+[ext_resource type="PackedScene" uid="uid://drle8i15nwr68" path="res://parts/StackLight.tscn" id="19_al73a"]
+[ext_resource type="PackedScene" uid="uid://co2mqmdwpn57w" path="res://parts/BoxSpawner.tscn" id="20_xacfh"]
+[ext_resource type="PackedScene" uid="uid://ccnjj66g0dynu" path="res://parts/Pallet.tscn" id="21_cyj70"]
+[ext_resource type="PackedScene" uid="uid://bq16fe5njnr2i" path="res://parts/Box.tscn" id="22_4v5pa"]
+
+[sub_resource type="Resource" id="Resource_rt6sa"]
+resource_local_to_scene = true
+script = ExtResource("17_nfexs")
+Tag = ""
+Active = false
+SegmentColor = Color(0, 1, 0, 0.5)
+
+[sub_resource type="Resource" id="Resource_jhfqx"]
+resource_local_to_scene = true
+script = ExtResource("18_unbyr")
+segmentDatas = [SubResource("Resource_rt6sa")]
+
+[node name="Demo" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278851, 1.36983, -2.02845)
+script = ExtResource("1_4g54m")
+Gateway = "192.168.1.11"
+Path = "1,0"
+
+[node name="Building" parent="." instance=ExtResource("2_tqfba")]
+metadata/_edit_lock_ = true
+
+[node name="SortationSystem" type="Node3D" parent="."]
+
+[node name="ConveyorGroup1" type="Node3D" parent="SortationSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="ConveyorAssembly1" type="Node3D" parent="SortationSystem/ConveyorGroup1"]
+
+[node name="Conveyor" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("6_jflkh")]
+transform = Transform3D(18, 9.51672e-11, 1.39698e-10, -1.71301e-09, 1, -1.45519e-11, -2.51456e-09, 1.45519e-11, 1, 0, 1, -4.65661e-10)
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(12.6312, 2.03287e-21, 0, -2.56776e-20, 1, 0, 0, 0, 1, 2.75913, 1, 0)
+
+[node name="SideGuard4" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(2.75, 2.03287e-21, 0, -5.5904e-21, 1, 0, 0, 0, 1, -7.75, 1, 0)
+
+[node name="SideGuard2" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-18, -3.46965e-17, 8.74227e-08, 2.29355e-17, 1, -8.67362e-18, -1.57361e-06, 0, -1, 0, 1, 0)
+
+[node name="ConveyorLeg" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="ConveyorLeg3" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1, -4, -2, 0)
+
+[node name="ConveyorLeg5" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1, -8, -2, 0)
+
+[node name="ConveyorLeg6" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1, 8, -2, 0)
+
+[node name="ConveyorLeg8" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly1" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1, 4, -2, 0)
+
+[node name="ConveyorAssembly2" type="Node3D" parent="SortationSystem/ConveyorGroup1"]
+transform = Transform3D(-1.62921e-07, 6.99174e-12, -1, 0, 1, 6.99174e-12, 1, 1.1391e-18, -1.62921e-07, -9.5, 8.61747e-11, 1.5)
+
+[node name="ConveyorCorner" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly2" instance=ExtResource("9_l4nkn")]
+transform = Transform3D(1, 0, 0, 0, 1, 1.85583e-25, 0, -1.85583e-25, 1, 0, 1, 0)
+
+[node name="ConveyorLegCBC" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly2" instance=ExtResource("10_8yxa5")]
+transform = Transform3D(1, 0, 0, 0, 2.5, 1.85583e-25, 0, -4.63958e-25, 1, 0, -2, 1.5)
+
+[node name="ConveyorLegCBC2" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly2" instance=ExtResource("10_8yxa5")]
+transform = Transform3D(-4.37114e-08, -1.7233e-25, 1, 1.35792e-25, 2.5, 6.8932e-26, -1, 3.3948e-25, -4.37114e-08, -1.5, -2, 0)
+
+[node name="SideGuardCBC" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly2" instance=ExtResource("11_mu6e4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ConveyorAssembly3" type="Node3D" parent="SortationSystem/ConveyorGroup1"]
+transform = Transform3D(-4.37114e-08, 9.51673e-11, 1, 1.45519e-11, 1, -9.51673e-11, -1, 1.45519e-11, -4.37114e-08, -11, 1.00536e-09, 2.5)
+
+[node name="Conveyor" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly3" instance=ExtResource("6_jflkh")]
+transform = Transform3D(1, 0, 0, 0, 1, 6.36084e-19, 0, -6.36084e-19, 1, 0, 1, 0)
+
+[node name="ConveyorLeg" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly3" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 3.80532e-11, 1.38487e-21, -1.45519e-11, 2.615, 9.51679e-11, 0, -2.48864e-10, 1, 0, -2, 0)
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly3" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(1, 1.45519e-11, -1.74846e-07, -1.45519e-11, 1, 9.51673e-11, 1.74846e-07, -9.51673e-11, 1, 0, 1, 0)
+
+[node name="SideGuard2" parent="SortationSystem/ConveyorGroup1/ConveyorAssembly3" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-1, 1.45519e-11, 8.74228e-08, 1.45519e-11, 1, -9.51673e-11, -8.74228e-08, -9.51673e-11, -1, 0, 1, 0)
+
+[node name="ConveyorGroup2" type="Node3D" parent="SortationSystem"]
+transform = Transform3D(1, -5.73269e-19, 0, -5.73269e-19, 1, 0, 0, 0, 1, -7, -3.68676e-10, 10)
+
+[node name="ConveyorAssembly4" type="Node3D" parent="SortationSystem/ConveyorGroup2"]
+
+[node name="RollerConveyor" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly4" instance=ExtResource("12_3e0gh")]
+transform = Transform3D(2.11613, -1.84338e-10, 2.79398e-10, 3.90084e-10, 1, -1.51063e-07, -5.91242e-10, 1.51063e-07, 1, -1.12172, 1, 0)
+
+[node name="ConveyorLegRC3" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly4" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1.055, 2, -2, 0)
+
+[node name="ConveyorLegRC2" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly4" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1.055, -2, -2, 0)
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly4" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-4.5, -5.73271e-19, 1.50996e-07, -2.57971e-18, 1, 6.76198e-18, -6.79481e-07, 6.76198e-18, -1, 0, 1, 0)
+RightEnd = false
+
+[node name="SideGuard2" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly4" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(4, -5.73268e-19, -3.87643e-36, 2.29307e-18, 1, 6.76198e-18, 0, -6.76198e-18, 1, 0, 1, 0)
+RightEnd = false
+
+[node name="ConveyorAssembly5" type="Node3D" parent="SortationSystem/ConveyorGroup2"]
+transform = Transform3D(1, 2.89404e-11, 2.38477e-07, -2.89404e-11, 1, -7.27596e-12, -2.38477e-07, 7.27595e-12, 1, -2.5, 2.26141e-10, -1.5)
+
+[node name="CurvedRollerConveyor" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly5" instance=ExtResource("14_d660b")]
+transform = Transform3D(1, 4.2331e-22, 0, -4.2331e-22, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ConveyorLegCRC" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly5" instance=ExtResource("15_qh4jy")]
+transform = Transform3D(1, 1.06034e-21, 0, -4.24137e-22, 2.5, 0, 0, 0, 1.05, 0, -2, 1.5)
+
+[node name="ConveyorLegCRC2" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly5" instance=ExtResource("15_qh4jy")]
+transform = Transform3D(-4.37114e-08, -9.05408e-11, -1.05, -2.16644e-11, 2.5, -3.80271e-11, 1, 5.4161e-11, -4.5897e-08, -1.5, -2, 2.38419e-07)
+
+[node name="CRCSideGuard" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly5" instance=ExtResource("16_sxivh")]
+transform = Transform3D(1, 4.24137e-22, 0, -4.24137e-22, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ConveyorAssembly6" type="Node3D" parent="SortationSystem/ConveyorGroup2"]
+transform = Transform3D(1, 7.61006e-23, 0, 7.61006e-23, 1, 0, 0, 0, 1, 3.5, 1.84338e-10, 0)
+
+[node name="RollerConveyor2" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly6" instance=ExtResource("12_3e0gh")]
+transform = Transform3D(5, -1.84338e-10, 2.79396e-10, 9.2169e-10, 1, -1.51063e-07, -1.39698e-09, 1.51063e-07, 1, -0.5, 1, 0)
+SkewAngle = 20.0
+
+[node name="ConveyorLegRC" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly6" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 1.99231e-22, 0, -7.61006e-23, 2.618, 0, 0, 0, 1.055, 0, -2, 0)
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly6" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.5, -5.73197e-19, 1.50996e-07, -1.43299e-18, 1, 6.76198e-18, -3.77489e-07, 6.76198e-18, -1, 0.5, 1, 0)
+
+[node name="ConveyorAssembly7" type="Node3D" parent="SortationSystem/ConveyorGroup2"]
+transform = Transform3D(1, -2.58494e-25, 0, -2.58494e-25, 1, 0, 0, 0, 1, 6.5, 1, 0)
+
+[node name="RollerConveyor" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly7" instance=ExtResource("12_3e0gh")]
+transform = Transform3D(1, -1.84338e-10, 2.79398e-10, 1.84338e-10, 1, -1.51063e-07, -2.79398e-10, 1.51063e-07, 1, 0, 0, 0)
+
+[node name="ConveyorLegRC3" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly7" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1.055, 0, -3, 0)
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup2/ConveyorAssembly7" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-1.5, -5.7327e-19, 1.50996e-07, -8.59903e-19, 1, 6.76198e-18, -2.26494e-07, 6.76198e-18, -1, 0, 0, 0)
+
+[node name="ConveyorGroup3" type="Node3D" parent="SortationSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0, 10)
+
+[node name="ConveyorAssembly8" type="Node3D" parent="SortationSystem/ConveyorGroup3"]
+
+[node name="Conveyor" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("6_jflkh")]
+transform = Transform3D(-8.5, 9.51673e-11, -1.50996e-07, 8.08922e-10, 1, 1.45519e-11, 1.28346e-06, 1.45519e-11, -1, 0, 1, 0)
+
+[node name="ConveyorLeg" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="ConveyorLeg3" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1, -4, -2, 0)
+
+[node name="ConveyorLeg4" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(1, 0, 0, 0, 2.618, 0, 0, 0, 1, 4, -2, 0)
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, -0.275648, 1, 0)
+LeftEnd = false
+RightEnd = false
+
+[node name="SideGuard2" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(0.699496, 0, 0, 0, 1, 0, 0, 0, 1, -2.99533, 1, 0)
+
+[node name="SideGuard4" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-0.965, 0, -1.50996e-07, 0, 1, 0, 1.45711e-07, 0, -1, 0, 1, 0)
+
+[node name="SideGuard5" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -3.5, 1, 0)
+
+[node name="SideGuard6" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-1.25, 0, -1.50996e-07, 0, 1, 0, 1.88745e-07, 0, -1, 3.75, 1, 0)
+
+[node name="SideGuard3" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(1.66629, 0, 0, 0, 1, 0, 0, 0, 1, 2.70816, 1, 0)
+LeftEnd = false
+RightEnd = false
+
+[node name="SideGuard7" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly8" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(0.531137, 0, 0, 0, 1, 0, 0, 0, 1, 4.1322, 1, 0)
+LeftEnd = false
+
+[node name="ConveyorAssembly9" type="Node3D" parent="SortationSystem/ConveyorGroup3"]
+transform = Transform3D(1.94707e-07, 7.14096e-12, 1, 7.27596e-12, 1, -7.14096e-12, -1, 7.27596e-12, 1.94707e-07, 4.75, -2.25137e-09, -1.5)
+
+[node name="ConveyorCorner" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly9" instance=ExtResource("9_l4nkn")]
+transform = Transform3D(1, 0, 0, 0, 1, -1.15639e-19, 0, 1.15639e-19, 1, 0, 1, 0)
+
+[node name="ConveyorLegCBC" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly9" instance=ExtResource("10_8yxa5")]
+transform = Transform3D(-4.37114e-08, -2.52735e-26, 1, -2.31277e-19, 2.5, -5.00741e-32, -1, -5.78193e-19, -4.37114e-08, -1.5, -2, 0)
+
+[node name="ConveyorLegCBC2" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly9" instance=ExtResource("10_8yxa5")]
+transform = Transform3D(1, 0, 0, 0, 2.5, -2.60198e-19, 0, 6.50495e-19, 1, 0, -2, 1.5)
+
+[node name="SideGuardCBC" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly9" instance=ExtResource("11_mu6e4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ConveyorAssembly10" type="Node3D" parent="SortationSystem/ConveyorGroup3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, -1.08832e-09, -2.5)
+
+[node name="Conveyor" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly10" instance=ExtResource("6_jflkh")]
+transform = Transform3D(1.94707e-07, 9.51673e-11, -1, -1.45519e-11, 1, 9.51673e-11, 1, 1.45519e-11, 1.94707e-07, 0, 1, 0)
+
+[node name="ConveyorLeg" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly10" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 2.618, 0, -1, 0, -4.37114e-08, 0, -2, 0)
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly10" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+
+[node name="SideGuard2" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly10" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 1, 0)
+
+[node name="ConveyorAssembly11" type="Node3D" parent="SortationSystem/ConveyorGroup3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, -2.23682e-09, -3.5)
+
+[node name="ConveyorCorner" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly11" instance=ExtResource("9_l4nkn")]
+transform = Transform3D(-1, 7.14096e-12, 1.50996e-07, 7.14096e-12, 1, 7.27596e-12, -1.50996e-07, 7.27596e-12, -1, 0, 1, 0)
+
+[node name="ConveyorLegCBC" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly11" instance=ExtResource("10_8yxa5")]
+transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, -2, -1.5)
+
+[node name="ConveyorLegCBC2" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly11" instance=ExtResource("10_8yxa5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 2.5, 0, -1, 0, -4.37114e-08, 1.5, -2, 0)
+
+[node name="SideGuardCBC" parent="SortationSystem/ConveyorGroup3/ConveyorAssembly11" instance=ExtResource("11_mu6e4")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1, 0)
+
+[node name="Conveyor" parent="SortationSystem/ConveyorGroup3" instance=ExtResource("6_jflkh")]
+transform = Transform3D(-5, 1.50996e-07, 1.65006e-15, 0, -4.37114e-08, 0.25, 7.54979e-07, 1, 1.09278e-08, -7, 1.5, -1.215)
+Speed = -1.0
+
+[node name="Diverter" parent="SortationSystem/ConveyorGroup3" instance=ExtResource("17_k3max")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -2.08632, 1.30887, -2.1991)
+
+[node name="Diverter2" parent="SortationSystem/ConveyorGroup3" instance=ExtResource("17_k3max")]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 1.52674, 1.3, -2.199)
+
+[node name="DiffuserSensor" parent="SortationSystem/ConveyorGroup3" instance=ExtResource("18_q87tj")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -3.75, 1.16182, -1.5)
+
+[node name="DiffuserSensor2" parent="SortationSystem/ConveyorGroup3" instance=ExtResource("18_q87tj")]
+transform = Transform3D(1, -5.77248e-05, 3.94192e-05, 5.77248e-05, 1, -1.26889e-06, -3.94192e-05, 1.2689e-06, 1, 3.69707, 1.162, -1.5)
+
+[node name="StackLight" parent="SortationSystem/ConveyorGroup3" instance=ExtResource("19_al73a")]
+transform = Transform3D(3, 0, 0, 0, 0.504861, 0, 0, 0, 3, 4.99253, 1.63611, -1.23715)
+data = SubResource("Resource_jhfqx")
+"Light 1" = SubResource("Resource_rt6sa")
+
+[node name="ConveyorGroup4" type="Node3D" parent="SortationSystem"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 4.75, -0.726724, 14.1454)
+
+[node name="ConveyorAssembly12" type="Node3D" parent="SortationSystem/ConveyorGroup4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1, 0)
+
+[node name="RollerConveyor" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly12" instance=ExtResource("12_3e0gh")]
+transform = Transform3D(-2.37696e-07, -1.84732e-08, -1, -2.53571, 0.906308, 1.86839e-14, 5.43785, 0.422618, -4.37114e-08, 0, -0.36, -0.3)
+Speed = -1.0
+
+[node name="ConveyorLegRC" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly12" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(-4.35451e-08, -6.86287e-09, -1.055, -0.0871556, 1.79469, 2.73393e-13, 0.996195, 0.157015, -4.61155e-08, 0, -2.15824, -1.33094)
+GrabsRotation = -20.0
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly12" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.42648e-07, 1.84732e-08, 1, 2.58854, 0.906308, 1.50144e-15, -5.55114, 0.422618, -4.37114e-08, 0, -0.392351, -0.3)
+RightEnd = false
+
+[node name="SideGuard3" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly12" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.11719, -1.99862e-08, 7.92319e-08, 0, 0.490269, 0.422618, -1.8509e-07, 0.228616, -0.906308, 0.0027709, -1.07417, 1.80629)
+LeftEnd = false
+RightEnd = false
+
+[node name="SideGuard2" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly12" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.42648e-07, -1.84732e-08, -1, -2.58854, 0.906308, 1.50144e-15, 5.55114, 0.422618, -4.37114e-08, 0, -0.392351, -0.3)
+LeftEnd = false
+
+[node name="ConveyorAssembly13" type="Node3D" parent="SortationSystem/ConveyorGroup4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 1, 0)
+
+[node name="RollerConveyor" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly13" instance=ExtResource("12_3e0gh")]
+transform = Transform3D(-2.37696e-07, -1.84732e-08, -1, -2.53571, 0.906308, 1.75079e-14, 5.43785, 0.422618, -4.37114e-08, 0, -0.36, -0.3)
+Speed = -1.0
+
+[node name="ConveyorLegRC" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly13" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(-4.35451e-08, -6.86504e-09, -1.125, -0.0871556, 1.79514, 8.91709e-15, 0.996195, 0.157054, -4.91753e-08, 0, -2.158, -1.317)
+GrabsRotation = -20.0
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly13" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.42648e-07, 1.84732e-08, 1, 2.58854, 0.906308, 1.50144e-15, -5.55114, 0.422618, -4.37114e-08, 0, -0.392351, -0.3)
+RightEnd = false
+
+[node name="SideGuard4" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly13" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.11719, -1.99862e-08, 7.92319e-08, 3.17883e-15, 0.490269, 0.422618, -1.8509e-07, 0.228616, -0.906308, 0.00512743, -1.07417, 1.80629)
+LeftEnd = false
+RightEnd = false
+
+[node name="SideGuard2" parent="SortationSystem/ConveyorGroup4/ConveyorAssembly13" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.42648e-07, -1.84732e-08, -1, -2.58854, 0.906308, 1.50144e-15, 5.55114, 0.422618, -4.37114e-08, 0, -0.392351, -0.3)
+LeftEnd = false
+
+[node name="ConveyorGroup5" type="Node3D" parent="SortationSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="BoxSpawner2" parent="SortationSystem/ConveyorGroup5" instance=ExtResource("20_xacfh")]
+transform = Transform3D(-4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965926, 0, -0.965926, -0.258819, -4.37114e-08, -5, 0.856199, -6.6844)
+spawnRandomSize = Vector2(1, 1)
+spawnInterval = 2.0
+
+[node name="ConveyorAssembly15" type="Node3D" parent="SortationSystem/ConveyorGroup5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3.41264)
+
+[node name="Conveyor" parent="SortationSystem/ConveyorGroup5/ConveyorAssembly15" instance=ExtResource("6_jflkh")]
+transform = Transform3D(-2.709e-07, -3.85851e-10, 1, -1.55292, 0.965926, -1.1313e-08, -5.79555, -0.25882, -4.37114e-08, 0, 0.4, -0.75)
+Speed = -1.0
+
+[node name="ConveyorLegBC" parent="SortationSystem/ConveyorGroup5/ConveyorAssembly15" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.4, 0, -1, 0, -4.37114e-08, 0, -2, -3)
+GrabsRotation = -15.0
+
+[node name="ConveyorLegBC2" parent="SortationSystem/ConveyorGroup5/ConveyorAssembly15" instance=ExtResource("8_8hj0k")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 2.675, 0, -1, 0, -4.37114e-08, 0, -2, 1.75)
+GrabsRotation = -15.0
+
+[node name="SideGuard" parent="SortationSystem/ConveyorGroup5/ConveyorAssembly15" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.53332e-07, -1.13132e-08, 1, -1.55291, 0.965926, -4.737e-14, -5.79556, -0.258818, -4.37114e-08, 0, 0.4, -0.75)
+
+[node name="SideGuard2" parent="SortationSystem/ConveyorGroup5/ConveyorAssembly15" instance=ExtResource("7_p3dwj")]
+transform = Transform3D(-2.53332e-07, 1.13132e-08, -1, 1.55291, 0.965926, -4.78023e-14, 5.79556, -0.258818, -4.37114e-08, 0, 0.4, -0.75)
+
+[node name="Pallet3" parent="SortationSystem" instance=ExtResource("21_cyj70")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84961, -1.98071, -4.02937)
+
+[node name="Box" parent="SortationSystem" instance=ExtResource("22_4v5pa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26236, -1.252, -4.59828)
+
+[node name="Box4" parent="SortationSystem" instance=ExtResource("22_4v5pa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26236, -0.252004, -4.59828)
+
+[node name="Box2" parent="SortationSystem" instance=ExtResource("22_4v5pa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28608, -1.252, -3.51224)
+
+[node name="Box3" parent="SortationSystem" instance=ExtResource("22_4v5pa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46695, -1.252, -4.5869)
+
+[node name="Pallet" parent="SortationSystem" instance=ExtResource("21_cyj70")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27251, -1.98071, 18.4259)
+
+[node name="Pallet2" parent="SortationSystem" instance=ExtResource("21_cyj70")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9652, -1.98071, 18.4259)
+
+[node name="PalletConveyance" type="Node3D" parent="."]
+transform = Transform3D(1, -1.84338e-10, 2.79397e-10, 1.84338e-10, 1, -1.51063e-07, -2.79397e-10, 1.51063e-07, 1, 0, 0, -9)
+
+[node name="ConveyorAssembly16" type="Node3D" parent="PalletConveyance"]
+
+[node name="RollerConveyor" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("12_3e0gh")]
+transform = Transform3D(30, 2.74036e-17, 0, -8.22107e-16, 1, 0, 0, 0, 1, 0, 0, 0)
+Speed = 0.5
+
+[node name="ConveyorLegRC2" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 2.98259e-10, -2.94764e-10, -1.84338e-10, 1.618, 1.59371e-07, 2.79397e-10, -2.4442e-07, 1.055, -2, -2, 0)
+
+[node name="ConveyorLegRC4" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 2.98259e-10, -2.94764e-10, -1.84338e-10, 1.618, 1.59371e-07, 2.79397e-10, -2.4442e-07, 1.055, -6, -2, 0)
+
+[node name="ConveyorLegRC6" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 2.98259e-10, -2.94764e-10, -1.84338e-10, 1.618, 1.59371e-07, 2.79397e-10, -2.4442e-07, 1.055, -10, -2, 0)
+
+[node name="ConveyorLegRC8" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 2.98259e-10, -2.94764e-10, -1.84338e-10, 1.618, 1.59371e-07, 2.79397e-10, -2.4442e-07, 1.055, -14, -2, 0)
+
+[node name="ConveyorLegRC9" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 2.98259e-10, -2.94764e-10, -1.84338e-10, 1.618, 1.59371e-07, 2.79397e-10, -2.4442e-07, 1.055, 14, -2, 0)
+
+[node name="ConveyorLegRC11" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 2.98259e-10, -2.94764e-10, -1.84338e-10, 1.618, 1.59371e-07, 2.79397e-10, -2.4442e-07, 1.055, 10, -2, 0)
+
+[node name="ConveyorLegRC13" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 2.98259e-10, -2.94764e-10, -1.84338e-10, 1.618, 1.59371e-07, 2.79397e-10, -2.4442e-07, 1.055, 6, -2, 0)
+
+[node name="ConveyorLegRC15" parent="PalletConveyance/ConveyorAssembly16" instance=ExtResource("13_k7nrd")]
+transform = Transform3D(1, 2.98259e-10, -2.94764e-10, -1.84338e-10, 1.618, 1.59371e-07, 2.79397e-10, -2.4442e-07, 1.055, 2, -2, 0)
+
+[node name="Pallet" parent="PalletConveyance" instance=ExtResource("21_cyj70")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8616, 0.299974, 0.0297165)
+
+[node name="Box" parent="PalletConveyance" instance=ExtResource("22_4v5pa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5513, 1.0295, -0.489886)
+
+[node name="Box3" parent="PalletConveyance" instance=ExtResource("22_4v5pa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5088, 1.02941, -0.4245)
+
+[node name="Box2" parent="PalletConveyance" instance=ExtResource("22_4v5pa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5514, 1.03088, 0.510552)
